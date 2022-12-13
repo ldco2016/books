@@ -7,7 +7,9 @@ function App() {
   const [books, setBooks] = useState([]);
 
   const fetchBooks = async () => {
-    const response = await axios.get('http://localhost:3001/books');
+    const response = await axios.get(
+      'https://my-json-server.typicode.com/ldco2016/json-book-server'
+    );
 
     setBooks(response.data);
   };
@@ -17,7 +19,9 @@ function App() {
   }, []);
 
   const editBookById = async (id, newTitle) => {
-    const response = await axios.put(`http://localhost:3001/books/${id}`);
+    const response = await axios.put(
+      `https://my-json-server.typicode.com/ldco2016/json-book-server/${id}`
+    );
 
     console.log(response);
 
@@ -33,7 +37,9 @@ function App() {
   };
 
   const deleteBookById = async (id) => {
-    await axios.delete(`http://localhost:3001/books/${id}`);
+    await axios.delete(
+      `https://my-json-server.typicode.com/ldco2016/json-book-server/${id}`
+    );
 
     const updatedBooks = books.filter((book) => {
       return book.id !== id;
@@ -43,9 +49,12 @@ function App() {
   };
 
   const createBook = async (title) => {
-    const response = await axios.post('http://localhost:3001/books', {
-      title,
-    });
+    const response = await axios.post(
+      'https://my-json-server.typicode.com/ldco2016/json-book-server',
+      {
+        title,
+      }
+    );
 
     const updatedBooks = [...books, response.data];
     setBooks(updatedBooks);
